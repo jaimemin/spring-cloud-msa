@@ -1,8 +1,11 @@
 package com.tistory.jaimemin.userservice.dto;
 
+import com.tistory.jaimemin.userservice.vo.ResponseOrder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class UserDto {
@@ -18,4 +21,6 @@ public class UserDto {
     private LocalDateTime createdAt;
 
     private String encryptedPwd;
+
+    private List<ResponseOrder> orders = new ArrayList<>();
 }
