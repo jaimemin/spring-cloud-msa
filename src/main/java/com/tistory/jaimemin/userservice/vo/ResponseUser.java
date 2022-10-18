@@ -16,5 +16,5 @@ public class ResponseUser {
 
     private String userId;
 
-    private List<ResponseOrder> orders = new ArrayList<>();
+    private List<ResponseOrder> orders;
 }

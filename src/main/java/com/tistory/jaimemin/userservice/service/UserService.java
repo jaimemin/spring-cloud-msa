@@ -1,7 +1,7 @@
 package com.tistory.jaimemin.userservice.service;
 
 import com.tistory.jaimemin.userservice.dto.UserDto;
-import com.tistory.jaimemin.userservice.repository.UserEntity;
+import com.tistory.jaimemin.userservice.entity.UserEntity;
 
 public interface UserService {
 
@@ -9,5 +9,5 @@ public interface UserService {
 
     UserDto getUserById(String userId);
 
-    Iterable<UserEntity> getUserByAll();
+    Iterable<UserEntity> getAllUsers();
 }

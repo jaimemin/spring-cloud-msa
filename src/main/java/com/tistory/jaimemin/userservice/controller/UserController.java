@@ -1,7 +1,7 @@
 package com.tistory.jaimemin.userservice.controller;
 
 import com.tistory.jaimemin.userservice.dto.UserDto;
-import com.tistory.jaimemin.userservice.repository.UserEntity;
+import com.tistory.jaimemin.userservice.entity.UserEntity;
 import com.tistory.jaimemin.userservice.service.UserService;
 import com.tistory.jaimemin.userservice.vo.Greeting;
 import com.tistory.jaimemin.userservice.vo.RequestUser;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-service/")
+@RequestMapping("/user-service")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -54,7 +54,7 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<List<ResponseUser>> getUsers() {
-        Iterable<UserEntity> users = userService.getUserByAll();
+        Iterable<UserEntity> users = userService.getAllUsers();
         List<ResponseUser> result = new ArrayList<>();
         users.forEach(v -> {
             result.add(new ModelMapper().map(v, ResponseUser.class));

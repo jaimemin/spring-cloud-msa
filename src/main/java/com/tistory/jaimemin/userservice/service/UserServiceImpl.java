@@ -1,7 +1,7 @@
 package com.tistory.jaimemin.userservice.service;
 
 import com.tistory.jaimemin.userservice.dto.UserDto;
-import com.tistory.jaimemin.userservice.repository.UserEntity;
+import com.tistory.jaimemin.userservice.entity.UserEntity;
 import com.tistory.jaimemin.userservice.repository.UserRepository;
 import com.tistory.jaimemin.userservice.vo.ResponseOrder;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Iterable<UserEntity> getUserByAll() {
+    public Iterable<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 }

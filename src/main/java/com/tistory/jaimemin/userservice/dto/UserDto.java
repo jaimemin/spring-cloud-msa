@@ -22,5 +22,5 @@ public class UserDto {
 
     private String encryptedPwd;
 
-    private List<ResponseOrder> orders = new ArrayList<>();
+    private List<ResponseOrder> orders;
 }

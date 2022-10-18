@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.userservice.repository;
+package com.tistory.jaimemin.userservice.entity;
 
 import lombok.Data;
 
