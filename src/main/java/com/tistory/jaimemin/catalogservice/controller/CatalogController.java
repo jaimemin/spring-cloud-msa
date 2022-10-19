@@ -30,7 +30,7 @@ public class CatalogController {
     }
 
     @GetMapping("/catalogs")
-    public ResponseEntity<List<ResponseCatalog>> getUsers() {
+    public ResponseEntity<List<ResponseCatalog>> getCatalogs() {
         Iterable<CatalogEntity> catalogs = catalogService.getAllCatalogs();
         List<ResponseCatalog> result = new ArrayList<>();
         catalogs.forEach(v -> {
