@@ -1,6 +1,6 @@
 token:
   expiration_time: 86400000
-  secret: user_token
+  secret: user_token_dev
 
 gateway:
   ip: 121.134.139.37
