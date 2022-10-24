@@ -2,6 +2,8 @@ package com.tistory.jaimemin.orderservice.controller;
 
 import com.tistory.jaimemin.orderservice.dto.OrderDto;
 import com.tistory.jaimemin.orderservice.entity.OrderEntity;
+import com.tistory.jaimemin.orderservice.messagequeue.KafkaProducer;
+import com.tistory.jaimemin.orderservice.messagequeue.OrderProducer;
 import com.tistory.jaimemin.orderservice.service.OrderService;
 import com.tistory.jaimemin.orderservice.vo.RequestOrder;
 import com.tistory.jaimemin.orderservice.vo.ResponseOrder;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +27,10 @@ public class OrderController {
     private final Environment environment;
 
     private final OrderService orderService;
+
+    private final KafkaProducer kafkaProducer;
+
+    private final OrderProducer orderProducer;
 
     @GetMapping("/health_check")
     public String status() {
@@ -38,7 +45,15 @@ public class OrderController {
 
         OrderDto orderDto = modelMapper.map(order, OrderDto.class);
         orderDto.setUserId(userId);
-        ResponseOrder responseOrder = modelMapper.map(orderService.createOrder(orderDto), ResponseOrder.class);
+        // ResponseOrder responseOrder = modelMapper.map(orderService.createOrder(orderDto), ResponseOrder.class);
+        orderDto.setOrderId(UUID.randomUUID().toString());
+        orderDto.setTotalPrice(order.getQuantity() * order.getUnitPrice());
+
+        // send this order to the kafka
+        kafkaProducer.send("example-catalog-topic", orderDto);
+        orderProducer.send("orders", orderDto);
+
+        ResponseOrder responseOrder = modelMapper.map(orderDto, ResponseOrder.class);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(responseOrder);
