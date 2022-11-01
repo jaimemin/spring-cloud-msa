@@ -5,3 +5,5 @@
 [MSA] 11번가 Spring Cloud 기반 MSA로의 전환 정리: https://jaimemin.tistory.com/2201
 
 [MSA] Spring Cloud 정리: https://jaimemin.tistory.com/2202
+
+[MSA] CQRS 패턴과 실제 적용 사례: https://jaimemin.tistory.com/2203
